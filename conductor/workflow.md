@@ -359,4 +359,10 @@ A task is complete when:
 - Document lessons learned
 - Optimize for user happiness
 - Keep things simple and maintainable
-\n## Branching & Commit Policy\n- One branch per Phase.\n- Frequent commits within branches.\n- Always merge via PR with Squash.\n- No direct commits to the main branch.
+## Branching & Commit Policy
+- **Feature Branches Required:** NEVER work directly on the \`main\` branch. 
+- **Track-Based Branching:** Create a new feature branch (named after the track ID, e.g., \`track/shortname_YYYYMMDD\`) immediately upon starting work on a new track.
+- **Phase-Based Branching (Optional):** Maintain separate branches for each phase within a track if necessary, but the primary rule is isolation from \`main\`.
+- **Frequent commits within branches.**
+- **Always merge via PR with Squash.**
+- **No direct commits to the main branch.**
