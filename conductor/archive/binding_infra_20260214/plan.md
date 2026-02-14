@@ -1,0 +1,26 @@
+# Implementation Plan: Minimal Binding Infrastructure for Benchmarking
+
+## Phase 1: Core C++ & Build Setup [checkpoint: ba3076b]
+
+- [x] Task: Integrate QuantLib 1.41 as a git submodule in the \`external/\` directory.
+- [x] Task: Set up the initial \`CMakeLists.txt\` for building the C++ extension with \`nanobind\`.
+- [x] Task: Configure \`pyproject.toml\` with \`scikit-build-core\` (using setuptools backend for stability) and project metadata.
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Core C++ & Build Setup' (Protocol in workflow.md)
+
+## Phase 2: Binding Generation Infrastructure [checkpoint: 38bc00e]
+
+ [checkpoint: ef5e2e7]
+
+- [x] Task: Write Tests: Verification of TOML configuration loading for \`litgen\`. (tests/test_litgen_config.py)
+- [x] Task: Implement: The binding generation script (\`generate_bindings.py\`) using \`litgen\`. (utils/generate_bindings.py)
+- [x] Task: Write Tests: Mock generation of a simple C++ class to verify \`litgen\` integration. (tests/test_mock_generation.py)
+- [x] Task: Implement: Logic to handle the \`benchmark_scope.toml\` and map it to \`litgen\` calls. (utils/generate_bindings.py)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Binding Generation Infrastructure' (Protocol in workflow.md)
+
+## Phase 3: Exposing Core Classes & Verification [checkpoint: 6b00fa3]
+
+- [x] Task: Finalize \`benchmark_scope.toml\` based on the output of \`baseline_benchmark_20260214\`.
+- [x] Task: Execute the binding generation for the target QuantLib classes (\`Date\`, \`Calendar\`, etc.). (utils/generate_bindings.py)
+- [x] Task: Compile the extension module and generate \`.pyi\` type stubs. (build successful)
+- [x] Task: Implement: A verification script (\`verify_bindings.py\`) to test basic instantiation and methods in Python. (utils/verify_bindings.py)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Exposing Core Classes & Verification' (Protocol in workflow.md)

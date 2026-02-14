@@ -1,0 +1,59 @@
+[project]
+name = "quantlib_nano_cpp"
+namespace = "ql"
+
+[[classes]]
+name = "Observable"
+header = "ql/patterns/observable.hpp"
+
+[[classes]]
+name = "Observer"
+header = "ql/patterns/observable.hpp"
+
+[[classes]]
+name = "Quote"
+header = "ql/quote.hpp"
+
+[[classes]]
+name = "Handle"
+header = "ql/handle.hpp"
+
+[[classes]]
+name = "LazyObject"
+header = "ql/patterns/lazyobject.hpp"
+
+[[classes]]
+name = "TermStructure"
+header = "ql/termstructure.hpp"
+
+[[classes]]
+name = "YieldTermStructure"
+header = "ql/termstructures/yieldtermstructure.hpp"
+
+[[classes]]
+name = "FlatForward"
+header = "ql/termstructures/yield/flatforward.hpp"
+
+[[classes]]
+name = "Date"
+header = "ql/time/date.hpp"
+
+[[classes]]
+name = "Settings"
+header = "ql/settings.hpp"
+
+[[classes]]
+name = "TARGET"
+header = "ql/time/calendars/target.hpp"
+
+[[classes]]
+name = "Actual365Fixed"
+header = "ql/time/daycounters/actual365fixed.hpp"
+
+[[classes]]
+name = "TimeUnit"
+header = "ql/time/timeunit.hpp"
+
+[[classes]]
+name = "Calendar"
+header = "ql/time/calendar.hpp"

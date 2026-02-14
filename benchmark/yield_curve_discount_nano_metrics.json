@@ -1,0 +1,10 @@
+{
+    "total_duration_s": 0.025778334005735815,
+    "iterations": 25606,
+    "avg_latency_us": 0.9293238577496725,
+    "min_latency_us": 0.7500057108700275,
+    "max_latency_us": 763.707997975871,
+    "p95_latency_us": 0.9590003173798323,
+    "p99_latency_us": 1.0420044418424368,
+    "throughput_ips": 993314.7733403769
+}

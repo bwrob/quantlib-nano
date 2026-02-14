@@ -14,5 +14,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Prepare minimal binding infrastructure for benchmarking**
-  _Link: [./tracks/binding_infra_20260214/](./tracks/binding_infra_20260214/)_
+- [x] **Track: Prepare minimal binding infrastructure for benchmarking**
+  _Link: [./archive/binding_infra_20260214/](./archive/binding_infra_20260214/)_
