@@ -1,0 +1,14 @@
+[project]
+name = "quantlib-nano"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "markdownify>=1.2.2",
+    "nanobind>=2.11.0",
+    "nanobind-stubgen>=0.1.5",
+    "numpy>=2.2.6",
+    "requests>=2.32.5",
+]
