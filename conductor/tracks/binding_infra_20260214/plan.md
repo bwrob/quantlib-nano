@@ -17,10 +17,10 @@
 - [x] Task: Implement: Logic to handle the \`benchmark_scope.toml\` and map it to \`litgen\` calls. (utils/generate_bindings.py)
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Binding Generation Infrastructure' (Protocol in workflow.md)
 
-## Phase 3: Exposing Core Classes & Verification
+## Phase 3: Exposing Core Classes & Verification [checkpoint: 6b00fa3]
 
 - [x] Task: Finalize \`benchmark_scope.toml\` based on the output of \`baseline_benchmark_20260214\`.
 - [x] Task: Execute the binding generation for the target QuantLib classes (\`Date\`, \`Calendar\`, etc.). (utils/generate_bindings.py)
 - [x] Task: Compile the extension module and generate \`.pyi\` type stubs. (build successful)
 - [x] Task: Implement: A verification script (\`verify_bindings.py\`) to test basic instantiation and methods in Python. (utils/verify_bindings.py)
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Exposing Core Classes & Verification' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Exposing Core Classes & Verification' (Protocol in workflow.md)
