@@ -167,7 +167,8 @@ Before marking any task complete, verify:
 
 - [ ] All tests pass
 - [ ] Code coverage meets requirements (>100% (for binding scripts))
-- [ ] Code follows project's code style guidelines (as defined in `code_styleguides/`)
+- [ ] **Performance:** No regressions in the 50-year daily benchmark (for binding tasks)
+- [ ] Code follows project's code style guidelines (as defined in \`code_styleguides/\`)
 - [ ] All public functions/methods are documented (e.g., docstrings, JSDoc, GoDoc)
 - [ ] Type safety is enforced (e.g., type hints, TypeScript types, Go types)
 - [ ] No linting or static analysis errors (using the project's configured tools)
