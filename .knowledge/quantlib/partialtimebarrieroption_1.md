@@ -1,8 +1,0 @@
-:arguments,
-                               PartialTimeBarrierOption::results> {
-    };
-
-}
-
-
-#endif

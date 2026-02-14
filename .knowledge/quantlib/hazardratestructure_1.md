@@ -1,6 +1,0 @@
-abilityImpl(t);
-    }
-
-}
-
-#endif
