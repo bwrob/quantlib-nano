@@ -48,7 +48,7 @@ All tasks follow a strict lifecycle:
 
 8. **Commit Code Changes:**
    - Stage all code changes related to the task.
-   - Propose a clear, concise commit message e.g, `feat(ui): Create basic HTML structure for calculator`.
+   - Propose a clear, concise commit message e.g, \`feat(scraper): Add intelligent chunking for Markdown\`.
    - Perform the commit.
 
 9. **Attach Task Summary with Git Notes:**
@@ -84,7 +84,7 @@ All tasks follow a strict lifecycle:
 
 3.  **Execute Automated Tests with Proactive Debugging:**
     - Before execution, you **must** announce the exact shell command you will use to run the tests.
-    - **Example Announcement:** "I will now run the automated test suite to verify the phase. **Command:** `CI=true npm test`"
+    - **Example Announcement:** "I will now run the automated test suite to verify the phase. **Command:** \`uv run pytest\`"
     - Execute the announced command.
     - If tests fail, you **must** inform the user and begin debugging. You may attempt to propose a fix a **maximum of two times**. If the tests still fail after your second proposed fix, you **must stop**, report the persistent failure, and ask the user for guidance.
 
@@ -93,26 +93,26 @@ All tasks follow a strict lifecycle:
     - You **must** generate a step-by-step plan that walks the user through the verification process, including any necessary commands and specific, expected outcomes.
     - The plan you present to the user **must** follow this format:
 
-      **For a Frontend Change:**
+      **For a Binding Change:**
 
       ```
       The automated tests have passed. For manual verification, please follow these steps:
 
       **Manual Verification Steps:**
-      1.  **Start the development server with the command:** `npm run dev`
-      2.  **Open your browser to:** `http://localhost:3000`
-      3.  **Confirm that you see:** The new user profile page, with the user's name and email displayed correctly.
+      1.  **Build the bindings using:** `uv run poe build`
+      2.  **Run the verification script:** `python .help/verify_binding.py`
+      3.  **Confirm that you see:** The expected discount factor output for the target date.
       ```
 
-      **For a Backend Change:**
+      **For an Infrastructure Change:**
 
       ```
       The automated tests have passed. For manual verification, please follow these steps:
 
       **Manual Verification Steps:**
-      1.  **Ensure the server is running.**
-      2.  **Execute the following command in your terminal:** `curl -X POST http://localhost:8080/api/v1/users -d '{"name": "test"}'`
-      3.  **Confirm that you receive:** A JSON response with a status of `201 Created`.
+      1.  **Execute the utility command:** `uv run poe fetch-knowledge`
+      2.  **Check the output directory:** `ls -R .knowledge/quantlib`
+      3.  **Confirm that you see:** The new documentation chunks correctly split by headers.
       ```
 
 5.  **Await Explicit User Feedback:**
@@ -178,7 +178,6 @@ Before marking any task complete, verify:
 - [ ] All public functions/methods are documented (e.g., docstrings, JSDoc, GoDoc)
 - [ ] Type safety is enforced (e.g., type hints, TypeScript types, Go types)
 - [ ] No linting or static analysis errors (using the project's configured tools)
-- [ ] Works correctly on mobile (if applicable)
 - [ ] Documentation updated if needed
 - [ ] No security vulnerabilities introduced
 
@@ -192,27 +191,33 @@ Before marking any task complete, verify:
 
 ### Setup
 
-```bash
-# Example: Commands to set up the development environment (e.g., install dependencies, configure database)
-# e.g., for a Node.js project: npm install
-# e.g., for a Go project: go mod tidy
-```
+\`\`\`bash
+# Install dependencies using uv
+uv sync
+# Install pre-commit hooks
+uv run pre-commit install
+\`\`\`
 
 ### Daily Development
 
-```bash
-# Example: Commands for common daily tasks (e.g., start dev server, run tests, lint, format)
-# e.g., for a Node.js project: npm run dev, npm test, npm run lint
-# e.g., for a Go project: go run main.go, go test ./..., go fmt ./...
-```
+\`\`\`bash
+# Run the knowledge base scraper
+uv run poe fetch-knowledge
+# Run tests
+uv run pytest
+# Run linting and formatting
+uv run ruff check .
+uv run ruff format .
+\`\`\`
 
 ### Before Committing
 
-```bash
-# Example: Commands to run all pre-commit checks (e.g., format, lint, type check, run tests)
-# e.g., for a Node.js project: npm run check
-# e.g., for a Go project: make check (if a Makefile exists)
-```
+\`\`\`bash
+# Run all pre-commit checks on staged files
+uv run pre-commit run
+# Run all checks on all files
+uv run pre-commit run --all-files
+\`\`\`
 
 ## Testing Requirements
 
@@ -227,17 +232,7 @@ Before marking any task complete, verify:
 ### Integration Testing
 
 - Test complete user flows
-- Verify database transactions
-- Test authentication and authorization
-- Check form submissions
-
-### Mobile Testing
-
-- Test on actual iPhone when possible
-- Use Safari developer tools
-- Test touch interactions
-- Verify responsive layouts
-- Check performance on 3G/4G
+- Verify library integration with sample applications
 
 ## Code Review Process
 
@@ -264,19 +259,10 @@ Before requesting review:
 4. **Security**
    - No hardcoded secrets
    - Input validation present
-   - SQL injection prevented
-   - XSS protection in place
 
 5. **Performance**
-   - Database queries optimized
-   - Images optimized
+   - No regressions in the 50-year daily benchmark
    - Caching implemented where needed
-
-6. **Mobile Experience**
-   - Touch targets adequate (44x44px)
-   - Text readable without zooming
-   - Performance acceptable on mobile
-   - Interactions feel native
 
 ## Commit Guidelines
 
@@ -302,12 +288,12 @@ Before requesting review:
 
 ### Examples
 
-```bash
-git commit -m "feat(auth): Add remember me functionality"
-git commit -m "fix(posts): Correct excerpt generation for short posts"
-git commit -m "test(comments): Add tests for emoji reaction limits"
-git commit -m "style(mobile): Improve button touch targets"
-```
+\`\`\`bash
+git commit -m "feat(scraper): Add intelligent chunking for Markdown"
+git commit -m "fix(binding): Correct Date arithmetic in Python wrapper"
+git commit -m "test(quantlib): Add tests for Calendar business day advancement"
+git commit -m "style(config): Update ruff linting rules"
+\`\`\`
 
 ## Definition of Done
 
@@ -318,73 +304,16 @@ A task is complete when:
 3. Code coverage meets project requirements
 4. Documentation complete (if applicable)
 5. Code passes all configured linting and static analysis checks
-6. Works beautifully on mobile (if applicable)
-7. Implementation notes added to `plan.md`
-8. Changes committed with proper message
-9. Git note with task summary attached to the commit
-
-## Emergency Procedures
-
-### Critical Bug in Production
-
-1. Create hotfix branch from main
-2. Write failing test for bug
-3. Implement minimal fix
-4. Test thoroughly including mobile
-5. Deploy immediately
-6. Document in plan.md
-
-### Data Loss
-
-1. Stop all write operations
-2. Restore from latest backup
-3. Verify data integrity
-4. Document incident
-5. Update backup procedures
-
-### Security Breach
-
-1. Rotate all secrets immediately
-2. Review access logs
-3. Patch vulnerability
-4. Notify affected users (if any)
-5. Document and update security procedures
-
-## Deployment Workflow
-
-### Pre-Deployment Checklist
-
-- [ ] All tests passing
-- [ ] Coverage >100% (for binding scripts)
-- [ ] No linting errors
-- [ ] Mobile testing complete
-- [ ] Environment variables configured
-- [ ] Database migrations ready
-- [ ] Backup created
-
-### Deployment Steps
-
-1. Merge feature branch to main
-2. Tag release with version
-3. Push to deployment service
-4. Run database migrations
-5. Verify deployment
-6. Test critical paths
-7. Monitor for errors
-
-### Post-Deployment
-
-1. Monitor analytics
-2. Check error logs
-3. Gather user feedback
-4. Plan next iteration
+6. Implementation notes added to \`plan.md\`
+7. Changes committed with proper message
+8. Git note with task summary attached to the commit
 
 ## Continuous Improvement
 
 - Review workflow weekly
 - Update based on pain points
 - Document lessons learned
-- Optimize for user happiness
+- Optimize for developer experience
 - Keep things simple and maintainable
 
 ## Branching & Commit Policy
