@@ -115,9 +115,9 @@ All tasks follow a strict lifecycle:
       3.  **Confirm that you see:** The new documentation chunks correctly split by headers.
       ```
 
-5.  **Await Explicit User Feedback:**
-    - After presenting the detailed plan, ask the user for confirmation: "**Does this meet your expectations? Please confirm with yes or provide feedback on what needs to be changed.**"
-    - **PAUSE** and await the user's response. Do not proceed without an explicit yes or confirmation.
+5.  **Announce Phase Verification:**
+    - After presenting the detailed plan, inform the user that the phase verification steps have been defined and are ready for later UAT.
+    - **CONTINUE:** Proceed immediately to the next task or phase. Do not pause for user feedback at this stage.
 
 6.  **Create Checkpoint Commit:**
     - Stage all changes. If no changes occurred in this step, proceed with an empty commit.
