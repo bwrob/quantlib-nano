@@ -17,6 +17,6 @@
 ## Phase 3: Documentation Population & Integration
 - [x] Task: Configure the script to fetch nanobind, litgen, and QuantLib documentation. 3469576
 - [x] Task: Execute the script and verify the content in \`.knowledge\`. d0600f3
-- [~] Task: Update \`.gemini/GEMINI.md\` and \`conductor/index.md\` to include the knowledge base in the context.
-- [ ] Task: Verify Gemini/Conductor integration with a technical query referencing the knowledge base.
+- [x] Task: Update \`.gemini/GEMINI.md\` and \`conductor/index.md\` to include the knowledge base in the context. 165fec3
+- [~] Task: Verify Gemini/Conductor integration with a technical query referencing the knowledge base.
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Documentation Population & Integration' (Protocol in workflow.md)
