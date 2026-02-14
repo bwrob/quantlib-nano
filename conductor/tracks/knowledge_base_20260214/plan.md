@@ -1,7 +1,7 @@
 # Implementation Plan: Knowledge Base Infrastructure
 
 ## Phase 1: Environment & Tooling Setup
-- [ ] Task: Initialize `uv` project with necessary dependencies (requests, beautifulsoup4, markdownify).
+- [x] Task: Initialize \`uv\` project with necessary dependencies (requests, beautifulsoup4, markdownify). 1c34022
 - [ ] Task: Create `.knowledge` directory and update `.gitignore` to exclude it.
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Environment & Tooling Setup' (Protocol in workflow.md)
 
