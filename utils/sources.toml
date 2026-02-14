@@ -9,3 +9,11 @@ type = "git"
 [sources.quantlib]
 url = "https://github.com/lballabio/QuantLib"
 type = "git"
+
+[sources.swig]
+url = "https://github.com/swig/swig"
+type = "git"
+
+[sources.quantlib_swig]
+url = "https://github.com/lballabio/QuantLib-SWIG"
+type = "git"
