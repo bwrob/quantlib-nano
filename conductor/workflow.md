@@ -178,7 +178,10 @@ Before marking any task complete, verify:
 
 ## Development Commands
 
-**AI AGENT INSTRUCTION: This section should be adapted to the project's specific language, framework, and build tools.**
+### Auxiliary & Verification Scripts
+- **The .help Directory:** All project-specific auxiliary scripts, manual verification prototypes, debug helpers, and temporary "scripts-of-the-moment" MUST be created in the \`.help/\` directory.
+- **Git Ignored:** The \`.help/\` directory is excluded from version control to keep the repository clean and avoid polluting the project's utility modules.
+- **Documentation:** If an auxiliary script becomes a permanent part of the development toolkit, it should be refactored into the \`utils/\` directory and properly documented before being committed.
 
 ### Setup
 ```bash
