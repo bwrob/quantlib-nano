@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from markdownify import markdownify as md
 from typing import Dict, List, Optional
 import subprocess
+import re
 
 class ScraperSource:
     def __init__(self, name: str, url: str, type: str):
@@ -43,13 +44,49 @@ class DocProcessor:
         return markdown.strip()
 
     @staticmethod
+    def chunk_markdown(content: str, max_chars: int = 4000) -> List[str]:
+        if len(content) <= max_chars:
+            return [content]
+            
+        # Split by headers (ATX style: #, ##, etc.)
+        # We use a lookahead to keep the delimiter with the following text
+        sections = re.split(r'(?=\n#+ )', "\n" + content)
+        sections = [s.strip() for s in sections if s.strip()]
+        
+        chunks = []
+        current_chunk = ""
+        
+        for section in sections:
+            if len(current_chunk) + len(section) + 2 <= max_chars:
+                if current_chunk:
+                    current_chunk += "\n\n" + section
+                else:
+                    current_chunk = section
+            else:
+                if current_chunk:
+                    chunks.append(current_chunk)
+                
+                # If a single section is larger than max_chars, split it by length
+                if len(section) > max_chars:
+                    for i in range(0, len(section), max_chars):
+                        chunks.append(section[i:i+max_chars])
+                    current_chunk = ""
+                else:
+                    current_chunk = section
+                    
+        if current_chunk:
+            chunks.append(current_chunk)
+            
+        return chunks
+
+    @staticmethod
     def process_file(file_path: str) -> str:
         with open(file_path, "r", encoding="utf-8") as f:
             content = f.read()
             
         if file_path.endswith(".html"):
             return DocProcessor.html_to_markdown(content)
-        return content # Assume it's already markdown or text
+        return content
 
 class KnowledgeScraper:
     def __init__(self, config_path: str, output_dir: str):
@@ -65,11 +102,15 @@ class KnowledgeScraper:
             subprocess.run(["git", "clone", "--depth", "1", source.url, repo_dir], check=True)
         return repo_dir
 
-    def fetch_web(self, source: ScraperSource):
-        # Implementation for simple web fetching (one page or simple crawl)
-        # For now, just a placeholder for the logic
-        pass
-
-if __name__ == "__main__":
-    # Example usage placeholder
-    pass
+    def process_and_save(self, source_name: str, file_path: str, content: str):
+        source_dir = os.path.join(self.output_dir, source_name)
+        os.makedirs(source_dir, exist_ok=True)
+        
+        chunks = DocProcessor.chunk_markdown(content)
+        base_name = os.path.splitext(os.path.basename(file_path))[0]
+        
+        for i, chunk in enumerate(chunks):
+            suffix = f"_{i}" if len(chunks) > 1 else ""
+            output_file = os.path.join(source_dir, f"{base_name}{suffix}.md")
+            with open(output_file, "w", encoding="utf-8") as f:
+                f.write(chunk)
