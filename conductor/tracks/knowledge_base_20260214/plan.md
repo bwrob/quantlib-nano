@@ -20,3 +20,11 @@
 - [x] Task: Update \`.gemini/GEMINI.md\` and \`conductor/index.md\` to include the knowledge base in the context. 165fec3
 - [x] Task: Verify Gemini/Conductor integration with a technical query referencing the knowledge base. a197d36
 - [x] Task: Conductor - User Manual Verification 'Phase 3: Documentation Population & Integration' (Protocol in workflow.md) 9dd18b5
+
+## Phase 4: UAT Refinement & Hardening
+- [x] Task: Reorganize project structure: move scraper to \`utils/\`. 1b210aa
+- [~] Task: Integrate \`poethepoet\` and add a task for running the scraper.
+- [ ] Task: Implement network mocking in tests using \`betamax\`.
+- [ ] Task: Fetch and apply \`ruff\` and \`basedpyright\` configurations from \`debug-dojo\`.
+- [ ] Task: Set up \`pre-commit\` with linting and type checking hooks.
+- [ ] Task: Conductor - User Manual Verification 'Phase 4: UAT Refinement & Hardening' (Protocol in workflow.md)
