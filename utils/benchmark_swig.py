@@ -15,44 +15,43 @@ def run_benchmark():
     years = 100
     end_date = calendar.advance(start_date, years, ql.Years)
     
-    # 1. Determine number of business days and pre-calculate random rates
-    temp_date = start_date
-    business_days = []
-    while temp_date < end_date:
-        temp_date = calendar.advance(temp_date, 1, ql.Days)
-        business_days.append(temp_date)
-    
-    num_iterations = len(business_days)
-    # Pre-calculate random rates between 1% and 10%
+    # Pre-calculate random rates with safe overhead (approx 252 * 100 = 25,200 days)
+    # 40,000 is plenty of overhead.
     np.random.seed(42)
-    random_rates = np.random.uniform(0.01, 0.10, num_iterations)
+    random_rates = np.random.uniform(0.01, 0.10, 40000)
     
-    print(f"Starting 100Y benchmark: {num_iterations} iterations from {start_date} to {end_date}")
-    print("Logic: For each day, create NEW FlatForward curve with random rate and lookup discount.")
+    print(f"Starting 100Y benchmark: from {start_date} to {end_date}")
+    print("Logic: Inside loop: advance day -> create NEW curve with random rate -> lookup discount.")
     
     results = []
+    current_date = start_date
     
-    # 2. Benchmark loop
+    # Benchmark loop
     start_time = time.perf_counter()
     
-    for i in range(num_iterations):
-        current_date = business_days[i]
-        rate = random_rates[i]
+    count = 0
+    while current_date < end_date:
+        # Advance 1 business day (INSIDE loop as requested)
+        current_date = calendar.advance(current_date, 1, ql.Days)
         
-        # Create NEW curve for every iteration to maximize interface overhead
+        # Use pre-calculated random rate
+        rate = random_rates[count]
+        
+        # Create NEW curve for every iteration
         yield_curve = ql.FlatForward(start_date, rate, day_count)
         
         # Read discount factor for the current date
         df = yield_curve.discount(current_date)
         results.append((current_date.serialNumber(), df))
+        count += 1
         
     end_time = time.perf_counter()
     
     duration = end_time - start_time
     print(f"Benchmark complete.")
-    print(f"Total iterations: {num_iterations}")
+    print(f"Total iterations: {count}")
     print(f"Total time: {duration:.4f} seconds")
-    print(f"Time per iteration: {(duration/num_iterations)*1e6:.4f} microseconds")
+    print(f"Time per iteration: {(duration/count)*1e6:.4f} microseconds")
     
     # Save results
     df_results = pd.DataFrame(results, columns=['serial_date', 'discount_factor'])
@@ -60,11 +59,11 @@ def run_benchmark():
     
     metrics = {
         'total_time_sec': duration,
-        'iterations': num_iterations,
-        'avg_time_microsec': (duration/num_iterations)*1e6,
+        'iterations': count,
+        'avg_time_microsec': (duration/count)*1e6,
         'lib_version': ql.__version__,
         'years': years,
-        'logic': 'new_curve_per_day'
+        'logic': 'advance_and_new_curve_per_day'
     }
     
     with open('baseline_metrics.json', 'w') as f:
