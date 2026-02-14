@@ -136,9 +136,14 @@ All tasks follow a strict lifecycle:
 
 ### Track Acceptance and Closure Protocol (UAT)
 
-**Trigger:** This protocol is executed after all implementation phases in a `plan.md` are completed.
+**Trigger:** This protocol is executed after all implementation phases in a \`plan.md\` are completed.
 
-1.  **Initiate UAT Phase:** Announce that the implementation is complete and the track is now entering the **User Acceptance Testing (UAT)** stage.
+1.  **Perform Automated Self-Review:** 
+    -   Announce that the implementation is complete and you will now perform an automated self-review of the changes.
+    -   Execute the \`/code-review\` command to analyze the track's implementation against the \`spec.md\`, \`tech-stack.md\`, and \`product-guidelines.md\`.
+    -   Address any high-priority issues or inconsistencies identified by the review before proceeding.
+
+2.  **Initiate UAT Phase:** Announce that the implementation and self-review are complete and the track is now entering the **User Acceptance Testing (UAT)** stage.
 
 2.  **Continuous Feedback Loop:**
     -   The track remains in the "UAT" status until the user explicitly approves closure.
