@@ -4,8 +4,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Establish SWIG Baseline & Benchmark Design**
-  _Link: [./tracks/baseline_benchmark_20260214/](./tracks/baseline_benchmark_20260214/)_
+- [x] **Track: Establish SWIG Baseline & Benchmark Design**
+  _Link: [./archive/baseline_benchmark_20260214/](./archive/baseline_benchmark_20260214/)_
 
 ---
 

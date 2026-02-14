@@ -1,8 +1,0 @@
-{
-    "total_time_sec": 0.14351754199014977,
-    "iterations": 25606,
-    "avg_time_microsec": 5.604840349533304,
-    "lib_version": "1.41",
-    "years": 100,
-    "logic": "advance_and_new_curve_per_day"
-}
