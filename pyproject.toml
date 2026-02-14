@@ -1,7 +1,7 @@
 [project]
 name = "quantlib-nano"
 version = "0.1.0"
-description = "Add your description here"
+description = "Alternative high-performance Python bindings for QuantLib using nanobind and litgen"
 readme = "README.md"
 authors = [{ name = "bwrob", email = "bartosz.marcin.wroblewski@gmail.com" }]
 requires-python = ">=3.10"
@@ -18,8 +18,18 @@ dependencies = [
     "pandas>=2.2.3",
 ]
 
+[build-system]
+requires = ["setuptools>=61.0", "scikit-build-core>=0.10.0", "nanobind>=2.11.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.scikit-build]
+cmake.version = ">=3.15"
+ninja.version = ">=1.10"
+wheel.expand-macos-bundle-install-names = true
+
 [tool.poe.tasks]
 fetch-knowledge = "python utils/knowledge_scraper.py"
+build = "python -m build -n -w"
 
 [tool.poe.tasks.fetch-comments]
 cmd = "gh pr view ${PR_NUMBER} --json comments,reviews"
@@ -37,6 +47,7 @@ dev = [
     "betamax>=0.9.0",
     "pre-commit>=4.5.1",
     "pytest>=9.0.2",
-    "pytest-sugar>=1.1.1",
     "ruff>=0.15.1",
+    "pytest-sugar>=1.1.1",
+    "build>=1.2.2",
 ]
