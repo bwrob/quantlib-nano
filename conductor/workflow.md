@@ -158,14 +158,25 @@ All tasks follow a strict lifecycle:
 
 4.  **Final Approval Request:** Once all feedback has been addressed, ask the user: "**All implementation and feedback for this track have been addressed. Are you satisfied with the results and ready to close this track?**"
 
-5.  **Mark Track as Completed:**
-    - **Step 4.1: Update Metadata:** Set the \`status\` to \`completed\` in the track's \`metadata.json\`.
-    - **Step 4.2: Update Registry:** Update the \`conductor/tracks.md\` file, marking the track as done \`[x]\`.
-    - **Step 4.3: Mandatory Archiving:** Move the track's directory to \`conductor/archive/\`. Completed tracks MUST ALWAYS be archived and NEVER deleted; they serve as a permanent historical record of the project's evolution.
+5.  **Mark Track as Completed (Perform in Feature Branch):**
 
-6.  **Final Commit:** Perform a final commit with the message `chore(conductor): Close track '<track_description>'`.
+    -   **Step 5.1: Update Metadata:** Set the \`status\` to \`completed\` in the track's \`metadata.json\`.
+
+    -   **Step 5.2: Update Registry:** Update the \`conductor/tracks.md\` file, marking the track as done \`[x]\` and updating its link to the archive.
+
+    -   **Step 5.3: Mandatory Archiving:** Move the track's directory to \`conductor/archive/\`. Completed tracks MUST ALWAYS be archived and NEVER deleted; they serve as a permanent historical record of the project's evolution.
+
+    -   **Step 5.4: Commit Closure Artifacts:** Commit these changes to the feature branch with the message \`chore(conductor): Prepare track '<track_description>' for closure\`.
+
+
+
+6.  **Final Merge:** Merge the feature branch into \`main\` (via PR or direct merge as per policy).
+
+
 
 7.  **Announce Track Closure:** Inform the user that the track is officially closed and summarized in the project history.
+
+
 
 ### Quality Gates
 
