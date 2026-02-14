@@ -6,7 +6,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Environment & Tooling Setup' (Protocol in workflow.md) 7b057cb
 
 ## Phase 2: Implementation of Fetching & Processing Script
-- [ ] Task: Write Tests: Script architecture and configuration loading.
+- [x] Task: Write Tests: Script architecture and configuration loading. 1b90a61
 - [ ] Task: Implement: Base scraper and document processor (HTML to Markdown).
 - [ ] Task: Write Tests: Document chunking logic.
 - [ ] Task: Implement: Logic to split large files into smaller topic-based chunks.
