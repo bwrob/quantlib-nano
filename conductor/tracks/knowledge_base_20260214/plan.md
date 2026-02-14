@@ -31,6 +31,6 @@
 
 ## Phase 5: Additional Documentation Population
 - [x] Task: Add SWIG and QuantLib-SWIG sources to \`sources.toml\`. b08ee1e
-- [~] Task: Execute scraper to fetch and process new documentation.
-- [ ] Task: Verify the presence and quality of SWIG/QuantLib-SWIG docs in \`.knowledge\`.
+- [x] Task: Execute scraper to fetch and process new documentation. 4b1a9e4
+- [~] Task: Verify the presence and quality of SWIG/QuantLib-SWIG docs in \`.knowledge\`.
 - [ ] Task: Conductor - User Manual Verification 'Phase 5: Additional Documentation Population' (Protocol in workflow.md)
