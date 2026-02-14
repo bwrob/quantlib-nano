@@ -138,7 +138,7 @@ All tasks follow a strict lifecycle:
 
 **Trigger:** This protocol is executed after all implementation phases in a \`plan.md\` are completed.
 
-1.  **Perform Automated Self-Review:** 
+1.  **Perform Automated Self-Review:**
     -   Announce that the implementation is complete and you will now perform an automated self-review of the changes.
     -   Execute the \`/code-review\` command to analyze the code quality and adherence to best practices.
     -   Execute the internal \`conductor review\` check (if available) or perform a manual cross-reference check to analyze the track's implementation specifically against the \`spec.md\`, \`plan.md\`, \`tech-stack.md\`, and \`product-guidelines.md\`.
@@ -360,7 +360,7 @@ A task is complete when:
 - Optimize for user happiness
 - Keep things simple and maintainable
 ## Branching & Commit Policy
-- **Feature Branches Required:** NEVER work directly on the \`main\` branch. 
+- **Feature Branches Required:** NEVER work directly on the \`main\` branch.
 - **Track-Based Branching:** Create a new feature branch (named after the track ID, e.g., \`track/shortname_YYYYMMDD\`) immediately upon starting work on a new track.
 - **Phase-Based Branching (Optional):** Maintain separate branches for each phase within a track if necessary, but the primary rule is isolation from \`main\`.
 - **Frequent commits within branches.**

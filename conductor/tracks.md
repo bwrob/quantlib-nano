@@ -6,5 +6,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 - [ ] **Track: Establish SWIG Baseline & Benchmark Design**
   *Link: [./tracks/baseline_benchmark_20260214/](./tracks/baseline_benchmark_20260214/)*
-\n---\n\n- [ ] **Track: Prepare local knowledge base infrastructure**\n  *Link: [./tracks/knowledge_base_20260214/](./tracks/knowledge_base_20260214/)*
+\n---\n\n- [~] **Track: Prepare local knowledge base infrastructure**\n  *Link: [./tracks/knowledge_base_20260214/](./tracks/knowledge_base_20260214/)*
 \n---\n\n- [ ] **Track: Prepare minimal binding infrastructure for benchmarking**\n  *Link: [./tracks/binding_infra_20260214/](./tracks/binding_infra_20260214/)*

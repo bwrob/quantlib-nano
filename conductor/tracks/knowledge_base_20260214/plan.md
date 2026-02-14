@@ -23,8 +23,8 @@
 
 ## Phase 4: UAT Refinement & Hardening
 - [x] Task: Reorganize project structure: move scraper to \`utils/\`. 1b210aa
-- [~] Task: Integrate \`poethepoet\` and add a task for running the scraper.
-- [ ] Task: Implement network mocking in tests using \`betamax\`.
-- [ ] Task: Fetch and apply \`ruff\` and \`basedpyright\` configurations from \`debug-dojo\`.
-- [ ] Task: Set up \`pre-commit\` with linting and type checking hooks.
+- [x] Task: Integrate \`poethepoet\` and add a task for running the scraper. 1a99006
+- [x] Task: Implement network mocking in tests using \`betamax\`. f94bcff
+- [x] Task: Fetch and apply \`ruff\` and \`basedpyright\` configurations from \`debug-dojo\`. 6374d83
+- [~] Task: Set up \`pre-commit\` with linting and type checking hooks.
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: UAT Refinement & Hardening' (Protocol in workflow.md)

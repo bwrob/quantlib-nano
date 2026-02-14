@@ -1,7 +1,12 @@
 {
     "pythonVersion": "3.10",
+    "exclude": [
+        "utils/manual_verify_phase2.py",
+        "utils/verify_env.py",
+        ".venv"
+    ],
     "strict": [
-        "utils/*.py",
+        "utils/knowledge_scraper.py",
         "tests/*.py"
     ],
     "typeCheckingMode": "all"

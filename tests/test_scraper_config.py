@@ -1,7 +1,10 @@
+"""Tests for scraper configuration and HTML processing."""
+
+from pathlib import Path
+
 import pytest
-import os
-import toml
-from knowledge_scraper import ScraperConfig, ScraperSource, DocProcessor
+
+from utils.knowledge_scraper import DocProcessor, ScraperConfig
 
 MOCK_CONFIG = """
 [sources.nanobind]
@@ -17,22 +20,29 @@ url = "https://www.quantlib.org/reference/"
 type = "web"
 """
 
-def test_load_config(tmp_path):
+
+def test_load_config(tmp_path: Path) -> None:
+    """Test loading configuration from TOML."""
     config_file = tmp_path / "sources.toml"
-    config_file.write_text(MOCK_CONFIG)
-    
+    _ = config_file.write_text(MOCK_CONFIG)
+
     sources = ScraperConfig.from_toml(str(config_file))
-    
-    assert len(sources) == 3
+
+    num_sources = 3
+    assert len(sources) == num_sources
     assert sources["nanobind"].url == "https://github.com/wjakob/nanobind"
-    assert sources["nanobind"].type == "git"
-    assert sources["quantlib_html"].type == "web"
+    assert sources["nanobind"].source_type == "git"
+    assert sources["quantlib_html"].source_type == "web"
 
-def test_config_file_not_found():
+
+def test_config_file_not_found() -> None:
+    """Test handling of missing configuration file."""
     with pytest.raises(FileNotFoundError):
-        ScraperConfig.from_toml("non_existent.toml")
+        _ = ScraperConfig.from_toml("non_existent.toml")
 
-def test_html_to_markdown():
+
+def test_html_to_markdown() -> None:
+    """Test HTML to Markdown conversion."""
     html = """
     <html>
         <nav>Navigation</nav>
