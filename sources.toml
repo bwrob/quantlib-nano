@@ -1,0 +1,11 @@
+[sources.nanobind]
+url = "https://github.com/wjakob/nanobind"
+type = "git"
+
+[sources.litgen]
+url = "https://github.com/pthom/litgen"
+type = "git"
+
+[sources.quantlib]
+url = "https://github.com/lballabio/QuantLib"
+type = "git"

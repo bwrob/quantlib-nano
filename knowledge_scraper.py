@@ -95,12 +95,34 @@ class KnowledgeScraper:
         os.makedirs(output_dir, exist_ok=True)
 
     def fetch_git(self, source: ScraperSource):
-        repo_dir = os.path.join("/tmp", source.name)
+        repo_dir = os.path.join("/tmp/knowledge_repos", source.name)
+        os.makedirs(os.path.dirname(repo_dir), exist_ok=True)
         if os.path.exists(repo_dir):
+            print(f"Updating {source.name}...")
             subprocess.run(["git", "-C", repo_dir, "pull"], check=True)
         else:
+            print(f"Cloning {source.name}...")
             subprocess.run(["git", "clone", "--depth", "1", source.url, repo_dir], check=True)
         return repo_dir
+
+    def run(self):
+        for name, source in self.config.items():
+            if source.type == "git":
+                repo_dir = self.fetch_git(source)
+                self.crawl_git(name, repo_dir)
+
+    def crawl_git(self, source_name: str, repo_dir: str):
+        # We look for .md files and .hpp/.h files (for API context)
+        for root, dirs, files in os.walk(repo_dir):
+            for file in files:
+                if file.endswith(".md") or file.endswith(".hpp") or file.endswith(".h"):
+                    file_path = os.path.join(root, file)
+                    with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                        content = f.read()
+                    
+                    # Only process files with meaningful content
+                    if len(content.strip()) > 100:
+                        self.process_and_save(source_name, file_path, content)
 
     def process_and_save(self, source_name: str, file_path: str, content: str):
         source_dir = os.path.join(self.output_dir, source_name)
@@ -114,3 +136,11 @@ class KnowledgeScraper:
             output_file = os.path.join(source_dir, f"{base_name}{suffix}.md")
             with open(output_file, "w", encoding="utf-8") as f:
                 f.write(chunk)
+
+if __name__ == "__main__":
+    import sys
+    config_path = "sources.toml"
+    output_dir = ".knowledge"
+    
+    scraper = KnowledgeScraper(config_path, output_dir)
+    scraper.run()
