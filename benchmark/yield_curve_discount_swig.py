@@ -9,19 +9,17 @@ def run_benchmark():
     start_date = ql.Date(14, 2, 2026)
     ql.Settings.instance().evaluationDate = start_date
     
-    calendar = ql.TARGET()
-    day_count = ql.Actual365Fixed()
-    
+    # We need a calendar to determine the end_date for the loop
+    setup_calendar = ql.TARGET()
     years = 100
-    end_date = calendar.advance(start_date, years, ql.Years)
+    end_date = setup_calendar.advance(start_date, years, ql.Years)
     
-    # Pre-calculate random rates with safe overhead (approx 252 * 100 = 25,200 days)
-    # 40,000 is plenty of overhead.
+    # Pre-calculate random rates with safe overhead
     np.random.seed(42)
     random_rates = np.random.uniform(0.01, 0.10, 40000)
     
     print(f"Starting 100Y benchmark: from {start_date} to {end_date}")
-    print("Logic: Inside loop: advance day -> create NEW curve with random rate -> lookup discount.")
+    print("Logic: Inside loop: create calendar/daycounter -> advance day -> create NEW curve -> lookup discount.")
     
     results = []
     current_date = start_date
@@ -31,7 +29,11 @@ def run_benchmark():
     
     count = 0
     while current_date < end_date:
-        # Advance 1 business day (INSIDE loop as requested)
+        # Create Calendar and DayCounter INSIDE loop as requested
+        calendar = ql.TARGET()
+        day_count = ql.Actual365Fixed()
+        
+        # Advance 1 business day
         current_date = calendar.advance(current_date, 1, ql.Days)
         
         # Use pre-calculated random rate
@@ -63,7 +65,7 @@ def run_benchmark():
         'avg_time_microsec': (duration/count)*1e6,
         'lib_version': ql.__version__,
         'years': years,
-        'logic': 'advance_and_new_curve_per_day'
+        'logic': 'instantiate_advance_and_new_curve_per_day'
     }
     
     with open('benchmark/yield_curve_discount_swig_metrics.json', 'w') as f:
