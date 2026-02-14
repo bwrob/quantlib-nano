@@ -134,6 +134,27 @@ All tasks follow a strict lifecycle:
 
 10.  **Announce Completion:** Inform the user that the phase is complete and the checkpoint has been created, with the detailed verification report attached as a git note.
 
+### Track Acceptance and Closure Protocol (UAT)
+
+**Trigger:** This protocol is executed after all implementation phases in a `plan.md` are completed.
+
+1.  **Initiate UAT Phase:** Announce that the implementation is complete and the track is now entering the **User Acceptance Testing (UAT)** stage.
+
+2.  **Continuous Feedback Loop:**
+    -   The track remains in the "UAT" status until the user explicitly approves closure.
+    -   The user is encouraged to test the feature/fix and provide feedback, especially regarding underspecified requirements or adjustments based on the implementation results.
+    -   If the user requests changes, the AI agent must update the `spec.md` and `plan.md` to include the necessary tasks and resume implementation.
+
+3.  **Final Approval Request:** Once all feedback has been addressed, ask the user: "**All implementation and feedback for this track have been addressed. Are you satisfied with the results and ready to close this track?**"
+
+4.  **Mark Track as Completed:**
+    -   **Step 4.1: Update Metadata:** Set the `status` to `completed` in the track's `metadata.json`.
+    -   **Step 4.2: Update Registry:** Update the `conductor/tracks.md` file, marking the track as done `[x]`.
+
+5.  **Final Commit:** Perform a final commit with the message `chore(conductor): Close track '<track_description>'`.
+
+6.  **Announce Track Closure:** Inform the user that the track is officially closed and summarized in the project history.
+
 ### Quality Gates
 
 Before marking any task complete, verify:
