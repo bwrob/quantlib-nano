@@ -17,6 +17,13 @@ dependencies = [
 
 [tool.poe.tasks]
 fetch-knowledge = "python utils/knowledge_scraper.py"
+fetch-comments = "gh pr view ${PR_NUMBER} --json comments,reviews"
+
+[[tool.poe.tasks.fetch-comments.args]]
+name = "PR_NUMBER"
+positional = true
+required = true
+help = "The PR number to fetch comments from"
 
 [dependency-groups]
 dev = [

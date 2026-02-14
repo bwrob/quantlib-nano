@@ -148,6 +148,7 @@ All tasks follow a strict lifecycle:
 
 2.  **Continuous Feedback Loop:**
     -   The track remains in the "UAT" status until the user explicitly approves closure.
+    -   **"I commented" Protocol:** If the user states "I commented" (or similar), the AI agent MUST immediately fetch all comments from the active pull request (using the \`poe fetch-comments\` task), analyze them, and systematically address each piece of feedback by updating the code and tests.
     -   The user is encouraged to test the feature/fix and provide feedback, especially regarding underspecified requirements or adjustments based on the implementation results.
     -   If the user requests changes, the AI agent must update the `spec.md` and `plan.md` to include the necessary tasks and resume implementation.
 
