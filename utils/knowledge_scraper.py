@@ -89,9 +89,10 @@ class DocProcessor:
         return content
 
 class KnowledgeScraper:
-    def __init__(self, config_path: str, output_dir: str):
+    def __init__(self, config_path: str, output_dir: str, session: Optional[requests.Session] = None):
         self.config = ScraperConfig.from_toml(config_path)
         self.output_dir = output_dir
+        self.session = session or requests.Session()
         os.makedirs(output_dir, exist_ok=True)
 
     def fetch_git(self, source: ScraperSource):
@@ -105,11 +106,20 @@ class KnowledgeScraper:
             subprocess.run(["git", "clone", "--depth", "1", source.url, repo_dir], check=True)
         return repo_dir
 
+    def fetch_web(self, source: ScraperSource):
+        print(f"Fetching {source.url}...")
+        response = self.session.get(source.url)
+        response.raise_for_status()
+        markdown = DocProcessor.html_to_markdown(response.text, base_url=source.url)
+        self.process_and_save(source.name, source.url + ".html", markdown)
+
     def run(self):
         for name, source in self.config.items():
             if source.type == "git":
                 repo_dir = self.fetch_git(source)
                 self.crawl_git(name, repo_dir)
+            elif source.type == "web":
+                self.fetch_web(source)
 
     def crawl_git(self, source_name: str, repo_dir: str):
         # We look for .md files and .hpp/.h files (for API context)
