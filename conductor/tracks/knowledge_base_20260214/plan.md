@@ -7,7 +7,7 @@
 
 ## Phase 2: Implementation of Fetching & Processing Script
 - [x] Task: Write Tests: Script architecture and configuration loading. 1b90a61
-- [ ] Task: Implement: Base scraper and document processor (HTML to Markdown).
+- [x] Task: Implement: Base scraper and document processor (HTML to Markdown). 7a89489
 - [ ] Task: Write Tests: Document chunking logic.
 - [ ] Task: Implement: Logic to split large files into smaller topic-based chunks.
 - [ ] Task: Write Tests: Hierarchical storage logic.
