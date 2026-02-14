@@ -19,8 +19,8 @@
 
 ## Phase 3: Exposing Core Classes & Verification
 
-- [ ] Task: Finalize `benchmark_scope.toml` based on the output of `baseline_benchmark_20260214`.
-- [ ] Task: Execute the binding generation for the target QuantLib classes (`Date`, `Calendar`, etc.).
-- [ ] Task: Compile the extension module and generate `.pyi` type stubs.
-- [ ] Task: Implement: A verification script (`verify_bindings.py`) to test basic instantiation and methods in Python.
+- [x] Task: Finalize \`benchmark_scope.toml\` based on the output of \`baseline_benchmark_20260214\`.
+- [x] Task: Execute the binding generation for the target QuantLib classes (\`Date\`, \`Calendar\`, etc.). (utils/generate_bindings.py)
+- [x] Task: Compile the extension module and generate \`.pyi\` type stubs. (build successful)
+- [x] Task: Implement: A verification script (\`verify_bindings.py\`) to test basic instantiation and methods in Python. (utils/verify_bindings.py)
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Exposing Core Classes & Verification' (Protocol in workflow.md)
