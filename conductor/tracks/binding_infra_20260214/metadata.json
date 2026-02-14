@@ -1,0 +1,8 @@
+{
+  "track_id": "binding_infra_20260214",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-02-14T14:03:01Z",
+  "updated_at": "2026-02-14T14:03:01Z",
+  "description": "Prepare minimal binding infrastructure for benchmarking"
+}
