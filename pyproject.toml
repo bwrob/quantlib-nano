@@ -1,0 +1,40 @@
+[project]
+name = "quantlib-nano"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [{ name = "bwrob", email = "bartosz.marcin.wroblewski@gmail.com" }]
+requires-python = ">=3.10"
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "litgen>=0.5.0",
+    "markdownify>=1.2.2",
+    "nanobind-stubgen>=0.1.5",
+    "nanobind>=2.11.0",
+    "numpy>=2.2.6",
+    "poethepoet>=0.41.0",
+    "requests>=2.32.5",
+    "toml>=0.10.2",
+]
+
+[tool.poe.tasks]
+fetch-knowledge = "python utils/knowledge_scraper.py"
+
+[tool.poe.tasks.fetch-comments]
+cmd = "gh pr view ${PR_NUMBER} --json comments,reviews"
+help = "Fetch comments from a pull request"
+
+[[tool.poe.tasks.fetch-comments.args]]
+name = "PR_NUMBER"
+positional = true
+required = true
+help = "The PR number to fetch comments from"
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.38.0",
+    "betamax>=0.9.0",
+    "pre-commit>=4.5.1",
+    "pytest>=9.0.2",
+    "ruff>=0.15.1",
+]

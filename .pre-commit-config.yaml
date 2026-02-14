@@ -1,0 +1,48 @@
+fail_fast: false
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+      - id: check-json
+      - id: check-added-large-files
+      - id: check-toml
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.0
+    hooks:
+      - id: ruff-check
+        name: 🐍 ruff · Check Python code
+        args: [ --fix ]
+      - id: ruff-format
+        name: 🐍 ruff · Format Python code
+
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.9.28
+    hooks:
+      - id: uv-lock
+        name: 🐍 uv · Lock dependencies
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        name: 🛠️ prettier · Format TOML and Markdown files
+        types_or: [toml, markdown]
+        additional_dependencies:
+          - prettier
+          - prettier-plugin-toml
+
+  - repo: local
+    hooks:
+      - id: basedpyright
+        name: 🐍 basedpyright · Type check Python code
+        entry: uv run basedpyright
+        language: system
+        types: [python]
+        pass_filenames: false

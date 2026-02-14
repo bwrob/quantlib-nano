@@ -1,0 +1,30 @@
+# Configuration for KnowledgeScraper (utils/knowledge_scraper.py)
+# This file defines the sources of documentation to be fetched and processed.
+
+# SOURCE OPTIONS:
+# [sources.NAME]
+#   url: The location of the documentation (Git repo URL or Website URL).
+#   type: The fetching method. Supported:
+#     - "git": Clones or pulls a repository and processes all .md files.
+#     - "web": Scrapes the provided URL for documentation content.
+#   include: (Optional) List of glob patterns to filter files for 'git' type.
+
+[sources.nanobind]
+url = "https://github.com/wjakob/nanobind"
+type = "git"
+
+[sources.litgen]
+url = "https://github.com/pthom/litgen"
+type = "git"
+
+[sources.quantlib]
+url = "https://github.com/lballabio/QuantLib"
+type = "git"
+
+[sources.swig]
+url = "https://github.com/swig/swig"
+type = "git"
+
+[sources.quantlib_swig]
+url = "https://github.com/lballabio/QuantLib-SWIG"
+type = "git"
