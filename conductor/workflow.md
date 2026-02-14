@@ -156,7 +156,7 @@ All tasks follow a strict lifecycle:
 4.  **Mark Track as Completed:**
     -   **Step 4.1: Update Metadata:** Set the \`status\` to \`completed\` in the track's \`metadata.json\`.
     -   **Step 4.2: Update Registry:** Update the \`conductor/tracks.md\` file, marking the track as done \`[x]\`.
-    -   **Step 4.3: Mandatory Archiving:** Move the track's directory to \`conductor/archive/\`. Completed tracks MUST NEVER be deleted; they are archived to maintain a permanent project record.
+    -   **Step 4.3: Mandatory Archiving:** Move the track's directory to \`conductor/archive/\`. Completed tracks MUST ALWAYS be archived and NEVER deleted; they serve as a permanent historical record of the project's evolution.
 
 5.  **Final Commit:** Perform a final commit with the message `chore(conductor): Close track '<track_description>'`.
 

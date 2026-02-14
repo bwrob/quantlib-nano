@@ -1,5 +1,0 @@
-                          Real tolerance) const;
-      };
-}
-
-#endif
