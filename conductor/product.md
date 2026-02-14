@@ -13,8 +13,9 @@ To provide a high-performance, modern, and fully type-annotated Python interface
 - **Performance:** Significant reduction in call overhead compared to SWIG, optimized for scenarios involving many small calls (e.g., yield curve bootstrapping, daily risk calculations).
 - **Type Safety:** Automated generation of comprehensive Python type hints (`.pyi` files) for superior developer experience and error detection.
 - **Ease of Migration:** Designed as a drop-in replacement (`import quantlib-nano as ql`) with 1:1 functional parity with the official SWIG API.
-- **Handle Pattern Support:** Transparent support for QuantLib's `Handle<T>` smart pointer pattern, ensuring "Pythonic" observability parity with SWIG.
-- **Automated Maintenance:** Utilizing `litgen` to automate the binding generation process, eliminating the need for manual `.i` file maintenance.
+- **Handle Pattern Support:** Transparent support for QuantLib's \`Handle<T>\` smart pointer pattern, ensuring "Pythonic" observability parity with SWIG.
+- **Template & Interpolator Support:** Robust handling of C++ templates, specifically focusing on yield curve interpolators (e.g., \`Linear\`, \`LogLinear\`, \`Cubic\`) to provide full flexibility in curve construction.
+- **Automated Maintenance:** Utilizing \`litgen\` to automate the binding generation process, eliminating the need for manual \`.i\` file maintenance.
 
 ## Success Metrics (Initial Phase)
 - **Benchmark Performance:** Demonstrate superior execution speed in a "50-year daily discount factor" benchmark compared to official SWIG bindings.

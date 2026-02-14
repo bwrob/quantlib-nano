@@ -10,11 +10,12 @@ Prepare a simple, focused binding infrastructure using `nanobind` and `litgen` t
 - **QuantLib Integration:** Integrate QuantLib 1.41 as a git submodule.
 - **Binding Generation:** Implement a generation script using `litgen` and `nanobind` driven by a single `benchmark_scope.toml` file.
 - **Scope of Exposure (Initial estimate, to be finalized by dependency):**
-    - `Date` class and basic arithmetic.
-    - `Calendar` (specifically `TARGET`).
-    - `DayCounter` (specifically `Actual365Fixed`).
-    - `YieldTermStructure` (specifically `FlatForward`).
-- **Build System:** Configure `CMake` and `scikit-build-core` to compile the extension module.
+    - \`Date\` class and basic arithmetic.
+    - \`Calendar\` (specifically \`TARGET\`).
+    - \`DayCounter\` (specifically \`Actual365Fixed\`).
+    - \`YieldTermStructure\` (specifically \`FlatForward\` and templated \`PiecewiseYieldCurve\` with common interpolators).
+- **Template Handling:** Develop a strategy in \`litgen\` for instantiating common QuantLib templates (e.g., \`InterpolatedYieldCurve<Linear>\`) to ensure functional parity.
+- **Build System:** Configure \`CMake\` and \`scikit-build-core\` to compile the extension module.
 - **Type Safety:** Automatically generate `.pyi` type stubs for all exposed classes.
 
 ## Non-Functional Requirements
