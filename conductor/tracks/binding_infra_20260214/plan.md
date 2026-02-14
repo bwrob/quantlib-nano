@@ -9,10 +9,10 @@
 
 ## Phase 2: Binding Generation Infrastructure
 
-- [ ] Task: Write Tests: Verification of TOML configuration loading for `litgen`.
-- [ ] Task: Implement: The binding generation script (`generate_bindings.py`) using `litgen`.
-- [ ] Task: Write Tests: Mock generation of a simple C++ class to verify `litgen` integration.
-- [ ] Task: Implement: Logic to handle the `benchmark_scope.toml` and map it to `litgen` calls.
+- [x] Task: Write Tests: Verification of TOML configuration loading for \`litgen\`. (tests/test_litgen_config.py)
+- [x] Task: Implement: The binding generation script (\`generate_bindings.py\`) using \`litgen\`. (utils/generate_bindings.py)
+- [x] Task: Write Tests: Mock generation of a simple C++ class to verify \`litgen\` integration. (tests/test_mock_generation.py)
+- [x] Task: Implement: Logic to handle the \`benchmark_scope.toml\` and map it to \`litgen\` calls. (utils/generate_bindings.py)
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Binding Generation Infrastructure' (Protocol in workflow.md)
 
 ## Phase 3: Exposing Core Classes & Verification
