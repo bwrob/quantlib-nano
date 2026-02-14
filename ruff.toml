@@ -1,0 +1,13 @@
+line-length    = 88
+target-version = "py310"
+
+[lint]
+    ignore  = ["COM", "D203", "D211", "D213", "PLR0912"]
+    select  = ["ALL"]
+
+    [lint.per-file-ignores]
+        "utils/*.py" = ["S101", "T201", "INP001"]
+        "tests/*" = ["S101", "T201"]
+
+[format]
+    docstring-code-format = true

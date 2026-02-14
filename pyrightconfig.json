@@ -1,0 +1,8 @@
+{
+    "pythonVersion": "3.10",
+    "strict": [
+        "utils/*.py",
+        "tests/*.py"
+    ],
+    "typeCheckingMode": "all"
+}
