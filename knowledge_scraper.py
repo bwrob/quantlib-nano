@@ -117,6 +117,8 @@ class KnowledgeScraper:
             for file in files:
                 if file.endswith(".md") or file.endswith(".hpp") or file.endswith(".h"):
                     file_path = os.path.join(root, file)
+                    if not os.path.exists(file_path):
+                        continue
                     with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
                         content = f.read()
                     
