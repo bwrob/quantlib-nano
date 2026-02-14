@@ -55,7 +55,7 @@ def run_benchmark():
     
     # Save results
     df_results = pd.DataFrame(results, columns=['serial_date', 'discount_factor'])
-    df_results.to_csv('benchmark/baseline_results.csv', index=False)
+    df_results.to_csv('benchmark/yield_curve_discount_swig_results.csv', index=False)
     
     metrics = {
         'total_time_sec': duration,
@@ -66,7 +66,7 @@ def run_benchmark():
         'logic': 'advance_and_new_curve_per_day'
     }
     
-    with open('benchmark/baseline_metrics.json', 'w') as f:
+    with open('benchmark/yield_curve_discount_swig_metrics.json', 'w') as f:
         json.dump(metrics, f, indent=4)
 
 if __name__ == "__main__":
