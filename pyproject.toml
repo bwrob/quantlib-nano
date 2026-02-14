@@ -10,5 +10,15 @@ dependencies = [
     "nanobind>=2.11.0",
     "nanobind-stubgen>=0.1.5",
     "numpy>=2.2.6",
+    "poethepoet>=0.41.0",
     "requests>=2.32.5",
+    "toml>=0.10.2",
+]
+
+[tool.poe.tasks]
+fetch-knowledge = "python utils/knowledge_scraper.py"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
 ]
