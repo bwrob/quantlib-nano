@@ -26,5 +26,11 @@
 - [x] Task: Integrate \`poethepoet\` and add a task for running the scraper. 1a99006
 - [x] Task: Implement network mocking in tests using \`betamax\`. f94bcff
 - [x] Task: Fetch and apply \`ruff\` and \`basedpyright\` configurations from \`debug-dojo\`. 6374d83
-- [~] Task: Set up \`pre-commit\` with linting and type checking hooks.
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: UAT Refinement & Hardening' (Protocol in workflow.md)
+- [x] Task: Set up \`pre-commit\` with linting and type checking hooks. fdd84fb
+- [x] Task: Conductor - User Manual Verification 'Phase 4: UAT Refinement & Hardening' (Protocol in workflow.md) fdd84fb
+
+## Phase 5: Additional Documentation Population
+- [x] Task: Add SWIG and QuantLib-SWIG sources to \`sources.toml\`. b08ee1e
+- [~] Task: Execute scraper to fetch and process new documentation.
+- [ ] Task: Verify the presence and quality of SWIG/QuantLib-SWIG docs in \`.knowledge\`.
+- [ ] Task: Conductor - User Manual Verification 'Phase 5: Additional Documentation Population' (Protocol in workflow.md)
