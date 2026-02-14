@@ -140,8 +140,9 @@ All tasks follow a strict lifecycle:
 
 1.  **Perform Automated Self-Review:** 
     -   Announce that the implementation is complete and you will now perform an automated self-review of the changes.
-    -   Execute the \`/code-review\` command to analyze the track's implementation against the \`spec.md\`, \`tech-stack.md\`, and \`product-guidelines.md\`.
-    -   Address any high-priority issues or inconsistencies identified by the review before proceeding.
+    -   Execute the \`/code-review\` command to analyze the code quality and adherence to best practices.
+    -   Execute the internal \`conductor review\` check (if available) or perform a manual cross-reference check to analyze the track's implementation specifically against the \`spec.md\`, \`plan.md\`, \`tech-stack.md\`, and \`product-guidelines.md\`.
+    -   Address any high-priority issues or inconsistencies identified by both reviews before proceeding.
 
 2.  **Initiate UAT Phase:** Announce that the implementation and self-review are complete and the track is now entering the **User Acceptance Testing (UAT)** stage.
 
