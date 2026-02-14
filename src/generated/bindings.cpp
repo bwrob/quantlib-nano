@@ -1,28 +1,4 @@
-import os
-import toml
-import re
-from litgen import LitgenOptions, generate_code_for_file
 
-def load_config(path='benchmark_scope.toml'):
-    with open(path, 'r') as f:
-        return toml.load(f)
-
-def generate_bindings():
-    config_path = 'benchmark_scope.toml'
-    if not os.path.exists(config_path):
-        print(f"Error: {config_path} not found.")
-        return
-
-    config = load_config(config_path)
-    project_name = config['project']['name']
-    
-    output_dir = os.path.join(os.getcwd(), 'src/generated')
-    os.makedirs(output_dir, exist_ok=True)
-    
-    # Generate ONE file for everything to avoid symbol visibility issues
-    bindings_cpp_path = os.path.join(output_dir, "bindings.cpp")
-    
-    code = """
 #include <nanobind/nanobind.h>
 #include <nanobind/stl/string.h>
 #include <nanobind/stl/vector.h>
@@ -89,15 +65,3 @@ void gen_bindings(nb::module_ &m) {
             [](Settings& s) { return s.evaluationDate(); },
             [](Settings& s, const Date& d) { s.evaluationDate() = d; });
 }
-"""
-    with open(bindings_cpp_path, 'w') as f:
-        f.write(code)
-
-    # Simplified registration header
-    with open(os.path.join(output_dir, "registration.h"), 'w') as f:
-        f.write("#include <nanobind/nanobind.h>\nvoid gen_bindings(nanobind::module_ &m);\n")
-            
-    print(f"Binding generation complete.")
-
-if __name__ == "__main__":
-    generate_bindings()
