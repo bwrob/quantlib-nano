@@ -28,6 +28,16 @@ repos:
       - id: uv-lock
         name: 🐍 uv · Lock dependencies
 
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        name: 🛠️ prettier · Format TOML and Markdown files
+        types_or: [toml, markdown]
+        additional_dependencies:
+          - prettier
+          - prettier-plugin-toml
+
   - repo: local
     hooks:
       - id: basedpyright

@@ -1,0 +1,91 @@
+/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+
+/*
+ Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 StatPro Italia srl
+ Copyright (C) 2009 Ferdinando Ametrano
+ Copyright (C) 2019 SoftSolutions! S.r.l.
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <https://www.quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+/*! \file interpolatedsimplezerocurve.hpp
+    \brief interpolated simply-compounded zero-rates structure
+*/
+
+#ifndef quantlib_zero_curve_simple_hpp
+#define quantlib_zero_curve_simple_hpp
+
+#include <ql/termstructures/interpolatedcurve.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
+#include <ql/utilities/dataformatters.hpp>
+#include <utility>
+
+namespace QuantLib {
+
+//! YieldTermStructure based on interpolation of zero rates
+/*! \ingroup yieldtermstructures */
+template <class Interpolator>
+class InterpolatedSimpleZeroCurve : public YieldTermStructure, protected InterpolatedCurve<Interpolator> {
+  public:
+    // constructor
+    InterpolatedSimpleZeroCurve(const std::vector<Date> &dates, const std::vector<Rate> &yields,
+                                const DayCounter &dayCounter, const Calendar &calendar = Calendar(),
+                                const std::vector<Handle<Quote> > &jumps = {},
+                                const std::vector<Date> &jumpDates = {},
+                                const Interpolator &interpolator = {});
+    InterpolatedSimpleZeroCurve(const std::vector<Date> &dates, const std::vector<Rate> &yields,
+                                const DayCounter &dayCounter, const Calendar &calendar,
+                                const Interpolator &interpolator);
+    InterpolatedSimpleZeroCurve(const std::vector<Date> &dates, const std::vector<Rate> &yields,
+                                const DayCounter &dayCounter, const Interpolator &interpolator);
+    //! \name TermStructure interface
+    //@{
+    Date maxDate() const override;
+    //@}
+    //! \name other inspectors
+    //@{
+    const std::vector<Time> &times() const;
+    const std::vector<Date> &dates() const;
+    const std::vector<Real> &data() const;
+    const std::vector<Rate> &zeroRates() const;
+    std::vector<std::pair<Date, Real> > nodes() const;
+    //@}
+  protected:
+    explicit InterpolatedSimpleZeroCurve(const DayCounter &,
+                                         const Interpolator &interpolator = {});
+    InterpolatedSimpleZeroCurve(const Date &referenceDate, const DayCounter &,
+                                const std::vector<Handle<Quote> > &jumps = {},
+                                const std::vector<Date> &jumpDates = {},
+                                const Interpolator &interpolator = {});
+    InterpolatedSimpleZeroCurve(Natural settlementDays, const Calendar &, const DayCounter &,
+                                const std::vector<Handle<Quote> > &jumps = {},
+                                const std::vector<Date> &jumpDates = {},
+                                const Interpolator &interpolator = {});
+
+    //! \name YieldTermStructure implementation
+    //@{
+    DiscountFactor discountImpl(Time t) const override;
+    //@}
+    mutable std::vector<Date> dates_;
+
+  private:
+    void initialize();
+};
+
+
+// inline definitions
+
+template <class T> inline Date InterpolatedSimpleZeroCurve<T>::maxDate() const { return dates_.back(); }
+
+template <class T> inline const std::vector<Time> &InterpolatedSimpleZeroCurve<T>::times() c

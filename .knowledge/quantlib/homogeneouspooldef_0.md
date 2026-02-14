@@ -1,0 +1,96 @@
+/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+
+/*
+ Copyright (C) 2008 Roland Lichters
+ Copyright (C) 2009, 2014 Jose Aparicio
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <https://www.quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+#ifndef quantlib_homogenous_pool_default_model_hpp
+#define quantlib_homogenous_pool_default_model_hpp
+
+#include <ql/experimental/credit/lossdistribution.hpp>
+#include <ql/experimental/credit/basket.hpp>
+#include <ql/experimental/credit/constantlosslatentmodel.hpp>
+#include <ql/experimental/credit/defaultlossmodel.hpp>
+
+// Intended to replace HomogeneousPoolCDOEngine in syntheticcdoengines.hpp
+
+namespace QuantLib {
+
+    //-------------------------------------------------------------------------
+    //! Default loss distribution convolution for finite homogeneous pool
+    /* A note on the number of buckets: As it is now the code goes splitting
+    losses into buckets from loses equal to zero to losses up to the value of
+    the underlying basket. This is in view of a stochastic loss given default
+    but in a constant LGD situation this is a waste and it is more efficient to
+    go up to the attainable losses.
+    \todo Extend to the multifactor case for a generic LM
+    */
+    template<class copulaPolicy>
+    class HomogeneousPoolLossModel : public DefaultLossModel {
+    private:
+      void resetModel() override;
+
+    public:
+        HomogeneousPoolLossModel(
+            const ext::shared_ptr<ConstantLossLatentmodel<copulaPolicy> >& 
+                copula,
+            Size nBuckets,
+            Real max = 5.,
+            Real min = -5.,
+            Size nSteps = 50)
+        : copula_(copula), 
+          nBuckets_(nBuckets), 
+          max_(max), min_(min), nSteps_(nSteps), delta_((max - min)/nSteps)
+        { 
+            QL_REQUIRE(copula->numFactors() == 1, 
+                "Inhomogeneous model not implemented for multifactor");
+        }
+    protected:
+        Distribution lossDistrib(const Date& d) const;
+    public:
+      Real expectedTrancheLoss(const Date& d) const override {
+          return lossDistrib(d).cumulativeExcessProbability(attachAmount_, detachAmount_);
+          // This one if the distribution is over the whole loss structure:
+          // but it becomes very expensive
+          /*
+          return lossDistrib(d).trancheExpectedValue(attach_ * notional_,
+              detach_ * notional_);
+          */
+      }
+      Real percentile(const Date& d, Real percentile) const override {
+          Real portfLoss = lossDistrib(d).confidenceLevel(percentile);
+          return std::min(std::max(portfLoss - attachAmount_, 0.), detachAmount_ - attachAmount_);
+      }
+      Real expectedShortfall(const Date& d, Probability percentile) const override {
+          Distribution dist = lossDistrib(d);
+          dist.tranche(attachAmount_, detachAmount_);
+          return dist.expectedShortfall(percentile);
+      }
+
+    protected:
+        const ext::shared_ptr<ConstantLossLatentmodel<copulaPolicy> > copula_;
+        Size nBuckets_;
+        mutable Real attach_, detach_, notional_, attachAmount_, detachAmount_;
+        mutable std::vector<Real> notionals_;
+    private:
+        // integration:
+        //  \todo move integration to latent model types when moving to a 
+        //  multifactor version
+        const Real max_;// redundant?
+        const Real min_;
+        const Size nSteps_;
+        co

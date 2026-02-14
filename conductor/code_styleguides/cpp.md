@@ -1,11 +1,12 @@
 # Google C++ Style Guide Summary
 
 ## 1. Naming
+
 - **General:** Optimize for readability. Be descriptive but concise. Use inclusive language.
 - **Files:** `.h` (headers), `.cc` (source). Lowercase with underscores (`_`) or dashes (`-`). Be consistent.
 - **Types:** PascalCase (`MyClass`, `MyEnum`). Use `int` by default; use `<cstdint>` (`int32_t`) if size matters.
 - **Concepts:** PascalCase (`MyConcept`).
-- **Variables:** snake_case (`my_var`). Class members end with underscore (`my_member_`), struct members do not.
+- **Variables:** snake*case (`my_var`). Class members end with underscore (`my_member*`), struct members do not.
 - **Constants/Enumerators:** `k` + PascalCase (`kDays`, `kOk`).
 - **Template Parameters:** PascalCase for types (`T`, `MyType`), snake_case/kPascalCase for non-types (`N`, `kLimit`).
 - **Functions:** PascalCase (`GetValue()`).
@@ -14,6 +15,7 @@
 - **Macros:** ALL_CAPS (`MY_MACRO`).
 
 ## 2. Header Files
+
 - **General:** Every `.cc` usually has a `.h`. Headers must be self-contained.
 - **Guards:** Use `#define <PROJECT>_<PATH>_<FILE>_H_`.
 - **IWYU:** Direct includes only. Do not rely on transitive includes.
@@ -25,9 +27,10 @@
   3. C++ standard (`<vector>`)
   4. Other libraries (`<Python.h>`)
   5. Project headers (`"base/logging.h"`)
-  *Separate groups with blank lines. Alphabetical within groups.*
+     _Separate groups with blank lines. Alphabetical within groups._
 
 ## 3. Formatting
+
 - **Indentation:** 2 spaces. **Line Length:** 80 chars.
 - **Non-ASCII:** Rare, use UTF-8. Avoid `u8` prefix if possible.
 - **Braces:** `if (cond) { ... }`. **Exception:** Function definition open brace goes on the **next line**.
@@ -47,6 +50,7 @@
 - **Parameter Wrapping:** Wrap parameter lists that don't fit. Use 4-space indent for wrapped parameters.
 
 ## 4. Classes
+
 - **Constructors:** `explicit` for single-arg and conversion operators. **Exception:** `std::initializer_list`. No virtual calls in ctors. Use factories for fallible init.
 - **Structs:** Only for passive data. Prefer `struct` over `std::pair` or `std::tuple`.
 - **Copy/Move:** Explicitly `= default` or `= delete`. **Rule of 5:** If defining one, declare all.
@@ -56,6 +60,7 @@
 - **Declaration Order:** `public` before `protected` before `private`. Within sections: Types, Constants, Factory, Constructors, Destructor, Methods, Data Members.
 
 ## 5. Functions
+
 - **Params:** Inputs (`const T&`, `std::string_view`, `std::span` or value) first, then outputs. **Ordering:** Inputs before outputs.
 - **Outputs:** Prefer return values/`std::optional`. For non-optional outputs, use references. For optional outputs, use pointers.
 - **Optional Inputs:** Use `std::optional` for by-value, `const T*` for reference.
@@ -66,6 +71,7 @@
 - **Trailing Return:** Only when necessary (lambdas).
 
 ## 6. Scoping
+
 - **Namespaces:** No `using namespace`. Use `using std::string`. Never add to `namespace std`.
 - **Internal:** Use anonymous namespaces or `static` in `.cc` files. Avoid in headers.
 - **Locals:** Narrowest scope. Initialize at declaration. **Exception:** Declare complex objects outside loops.
@@ -73,6 +79,7 @@
 - **Thread Local:** `thread_local` must be `constinit` if global. Prefer `thread_local` over other mechanisms.
 
 ## 7. Modern C++ Features
+
 - **Version:** Target **C++20**. Do not use C++23. Consider portability for C++17/20 features. No non-standard extensions.
 - **Modules:** Do not use C++20 Modules.
 - **Coroutines:** Use approved libraries only. Do not roll your own promise or awaitable types.
@@ -91,6 +98,7 @@
 - **Loops:** Prefer range-based `for`.
 
 ## 8. Best Practices
+
 - **Const:** Mark methods/variables `const` whenever possible. `const` methods must be thread-safe.
 - **Exceptions:** **Forbidden**.
 - **RTTI:** Avoid `dynamic_cast`/`typeid`. Allowed in unit tests. Do not hand-implement workarounds.
@@ -110,4 +118,4 @@
 
 **BE CONSISTENT.** Follow existing code style.
 
-*Source: [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)*
+_Source: [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)_
