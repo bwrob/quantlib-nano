@@ -1,11 +1,11 @@
 # Implementation Plan: Minimal Binding Infrastructure for Benchmarking
 
-## Phase 1: Core C++ & Build Setup
+## Phase 1: Core C++ & Build Setup [checkpoint: ba3076b]
 
 - [x] Task: Integrate QuantLib 1.41 as a git submodule in the \`external/\` directory.
 - [x] Task: Set up the initial \`CMakeLists.txt\` for building the C++ extension with \`nanobind\`.
 - [x] Task: Configure \`pyproject.toml\` with \`scikit-build-core\` (using setuptools backend for stability) and project metadata.
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Core C++ & Build Setup' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Core C++ & Build Setup' (Protocol in workflow.md)
 
 ## Phase 2: Binding Generation Infrastructure
 
