@@ -207,6 +207,7 @@ Before marking any task complete, verify:
 ## Testing Requirements
 
 ### Unit Testing
+- **Pytest Required:** All Python code MUST be tested using the \`pytest\` framework.
 - Every module must have corresponding tests.
 - Use appropriate test setup/teardown mechanisms (e.g., fixtures, beforeEach/afterEach).
 - Mock external dependencies.
