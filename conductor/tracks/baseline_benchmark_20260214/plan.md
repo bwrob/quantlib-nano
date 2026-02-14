@@ -2,8 +2,8 @@
 
 ## Phase 1: Environment & Baseline Setup
 
-- [ ] Task: Set up `uv` environment with official `QuantLib` and `pandas/numpy` for benchmarking.
-- [ ] Task: Create a prototype script to verify official binding functionality (Date, Calendar, YieldCurve).
+- [x] Task: Set up \`uv\` environment with official \`QuantLib\` and \`pandas/numpy\` for benchmarking. (uv sync complete)
+- [x] Task: Create a prototype script to verify official binding functionality (Date, Calendar, YieldCurve). (.help/verify_quantlib.py)
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Environment & Baseline Setup' (Protocol in workflow.md)
 
 ## Phase 2: Benchmark Design & Execution
