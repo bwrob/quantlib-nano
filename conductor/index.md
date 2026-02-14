@@ -12,3 +12,6 @@
 ## Management
 - [Tracks Registry](./tracks.md)
 - [Tracks Directory](./tracks/)
+
+## Technical Reference
+- [Local Knowledge Base](../.knowledge/)
