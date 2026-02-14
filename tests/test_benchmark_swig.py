@@ -1,4 +1,4 @@
-from utils.benchmark_swig import run_benchmark
+from benchmark.benchmark_swig import run_benchmark
 import os
 
 def test_benchmark_runs():
@@ -6,5 +6,5 @@ def test_benchmark_runs():
     run_benchmark()
     
     # Check if files were created
-    assert os.path.exists('baseline_results.csv')
-    assert os.path.exists('baseline_metrics.json')
+    assert os.path.exists('benchmark/baseline_results.csv')
+    assert os.path.exists('benchmark/baseline_metrics.json')
