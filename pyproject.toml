@@ -16,6 +16,7 @@ dependencies = [
     "toml>=0.10.2",
     "QuantLib>=1.37",
     "pandas>=2.2.3",
+    "litgen>=0.22.0",
 ]
 
 [build-system]

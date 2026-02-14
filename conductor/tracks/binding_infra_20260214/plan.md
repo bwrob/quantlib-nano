@@ -7,7 +7,7 @@
 - [x] Task: Configure \`pyproject.toml\` with \`scikit-build-core\` (using setuptools backend for stability) and project metadata.
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Core C++ & Build Setup' (Protocol in workflow.md)
 
-## Phase 2: Binding Generation Infrastructure
+## Phase 2: Binding Generation Infrastructure [checkpoint: ef5e2e7]
 
 - [x] Task: Write Tests: Verification of TOML configuration loading for \`litgen\`. (tests/test_litgen_config.py)
 - [x] Task: Implement: The binding generation script (\`generate_bindings.py\`) using \`litgen\`. (utils/generate_bindings.py)
